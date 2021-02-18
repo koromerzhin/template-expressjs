@@ -19,10 +19,10 @@ help:
 
 
 app/package-lock.json: app/package.json
-	cd front && npm install
+	cd app && npm install
 
 app/node_modules: app/package-lock.json
-	cd front && npm install
+	cd app && npm install
 
 
 package-lock.json: package.json
@@ -58,7 +58,6 @@ ifeq ($(COMMAND_ARGS),create-network)
 else ifeq ($(COMMAND_ARGS),deploy)
 	@docker stack deploy -c docker-compose.yml $(STACK)
 else ifeq ($(COMMAND_ARGS),image-pull)
-	@docker image pull koromerzhin/nodejs:1.1.3-quasar
 	@docker image pull koromerzhin/nodejs:15.1.0-express
 else ifeq ($(COMMAND_ARGS),ls)
 	@docker stack services $(STACK)

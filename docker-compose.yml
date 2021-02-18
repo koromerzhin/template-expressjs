@@ -10,7 +10,7 @@ services:
   www:
     image: koromerzhin/nodejs:15.1.0-express
     volumes:
-      - ${PWD}/back:/app
+      - ${PWD}/app:/app
     networks:
       - proxynetwork
       - net
