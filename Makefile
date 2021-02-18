@@ -1,7 +1,7 @@
 isDocker := $(shell docker info > /dev/null 2>&1 && echo 1)
 
 .DEFAULT_GOAL := help
-STACK         := template-expressjs
+STACK         := expressjs
 NETWORK       := proxynetwork
 
 FRONT           := $(STACK)_www
