@@ -18,6 +18,16 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node
+      - name: Cache apps npm packages
+        id: apps-cache
+        uses: actions/cache@v2
+        with:
+          path: app/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/app/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-apps
+      - name: Install app npm dependencies
+        if: steps.apps-cache.outputs.cache-hit != 'true'
       - name: Install npm dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: make node_modules
